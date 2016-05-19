@@ -1,8 +1,7 @@
 ## Building
 To build your docker image run:
-```
-docker build -t opencv-armhf:3.1 .
-```
+1. Download fresh code with `git pull` in **opencv/opencv** and **opencv/opencv_contrib** directory
+2. Run build command `docker build -t opencv-armhf:3.1 .`
 
 ## Troubleshooting
 You can receive error during build process:
