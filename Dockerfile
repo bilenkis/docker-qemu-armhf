@@ -38,4 +38,6 @@ RUN cd /usr/src \
             -D WITH_OPENGL=ON \
             .. \
     && make -j$(nproc)\
-    && make install
+    && make install \
+    && cd .. \
+    && rm -rf build
