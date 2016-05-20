@@ -1,30 +1,18 @@
 FROM resin/armv7hf-debian-qemu
 MAINTAINER Yury Bilenkis <adm@bilenkis.ru>
 
-RUN set -xe \
-    && export DEBIAN_FRONTEND=noninteractive \
-    && apt-get update -qq  \
-    && apt-get install -qq \
-            git \
-            make \
-            cmake \
-            libjpeg-dev \
-            libtiff5-dev \
-            libjasper-dev \
-            libgtk2.0-dev \
-            libavcodec-dev \
-            libavformat-dev \
-            libswscale-dev \
-            libv4l-dev \
-            libdc1394-22-dev \
-            libxine2-dev \
-            libgstreamer0.10-dev \
-            libgstreamer-plugins-base0.10-dev \
-            libqt4-dev
-
 COPY opencv /usr/src/
 
-RUN cd /usr/src \
+RUN set -xe \
+    && DEBIAN_FRONTEND=noninteractive \
+    && BUILDDEPS="git make cmake libjpeg-dev libtiff5-dev libjasper-dev libgtk2.0-dev libavcodec-dev libavformat-dev libswscale-dev libv4l-dev libdc1394-22-dev libxine2-dev libgstreamer0.10-dev libgstreamer-plugins-base0.10-dev libqt4-dev"
+    && apt-get update -qq  \
+    # install dependencies
+    && apt-get install -qq \
+        $BUILDDEPS \ 
+
+    # compile opencv with modules
+    && cd /usr/src \
     && OPENCVSRC="opencv-3.1.0" \
     && mkdir $OPENCVSRC/build \
     && cd $OPENCVSRC/build \
@@ -40,4 +28,5 @@ RUN cd /usr/src \
     && make -j$(nproc)\
     && make install \
     && cd .. \
-    && rm -rf build
+    && rm -rf build \
+    && apt-get purge -qq $BUILDDEPS && apt-get autoremove -qq && apt-get clean
