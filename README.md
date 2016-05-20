@@ -3,8 +3,8 @@ To build your docker image run:
 1. Download fresh code with `git pull` in **opencv/opencv** and **opencv/opencv_contrib** directory
 2. Run build command `docker build -t opencv-armhf:3.1 .`
 3. Before take photo you need to do:
-    - `# echo -e "start_x=1\ngpu_mem=128\n" >> /boot/config.txt`
-    - `echo "bcm2835_v4l2" >> /etc/modules`
+    - `pi@raspberry:~# echo -e "start_x=1\ngpu_mem=128\n" >> /boot/config.txt`
+    - `pi@raspberry:~# echo "bcm2835_v4l2" >> /etc/modules`
 
 ## Troubleshooting
 You can receive error during build process:
