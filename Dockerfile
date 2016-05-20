@@ -13,7 +13,7 @@ RUN set -xe \
 
     # compile opencv with modules
     && cd /usr/src \
-    && OPENCVSRC="opencv-3.1.0" \
+    && OPENCVSRC="opencv" \
     && mkdir $OPENCVSRC/build \
     && cd $OPENCVSRC/build \
     && cmake -D OPENCV_EXTRA_MODULES_PATH=../../opencv_contrib/modules \
