@@ -5,7 +5,7 @@ COPY opencv /usr/src/
 
 RUN set -xe \
     && DEBIAN_FRONTEND=noninteractive \
-    && BUILDDEPS="git make cmake libjpeg-dev libtiff5-dev libjasper-dev libgtk2.0-dev libavcodec-dev libavformat-dev libswscale-dev libv4l-dev libdc1394-22-dev libxine2-dev libgstreamer0.10-dev libgstreamer-plugins-base0.10-dev libqt4-dev"
+    && BUILDDEPS="git make cmake libjpeg-dev libtiff5-dev libjasper-dev libgtk2.0-dev libavcodec-dev libavformat-dev libswscale-dev libv4l-dev libdc1394-22-dev libxine2-dev libgstreamer0.10-dev libgstreamer-plugins-base0.10-dev libqt4-dev" \
     && apt-get update -qq  \
     # install dependencies
     && apt-get install -qq \
@@ -27,6 +27,6 @@ RUN set -xe \
             .. \
     && make -j$(nproc)\
     && make install \
-    && cd .. \
-    && rm -rf build \
+    && cd / \
+    && rm -rf /usr/src \
     && apt-get purge -qq $BUILDDEPS && apt-get autoremove -qq && apt-get clean
