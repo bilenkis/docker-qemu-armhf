@@ -16,3 +16,4 @@ To avoid this trouble run docker daemon with option:
 ``` 
 --exec-opt native.cgroupdriver=cgroupfs
 ```
+or run `docker build` on Ubuntu 16.04
